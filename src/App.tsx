@@ -18,6 +18,7 @@ const App = () => {
     <>
 	  <div>
 		<header className="App-header">
+      <h1>ORE Testnet Faucet</h1>
 					{isLoggedIn ? <LoggedIn /> : <LoggedOut />}
 					<ShowResultResults result={oreIdResult} />
 					<ShowResultResults result={errors} error />

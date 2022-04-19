@@ -10,7 +10,7 @@ interface Props {
 export const SelectTxParams: React.FC<Props> = ({ amount, setAmount, toAddress, setToAddress }) => {
 	return (
 		<div style={{ marginTop: 10, marginBottom: 20 }}>
-			<h2>Transfer testnet funds from your wallet</h2>
+			<h2>Transfer</h2>
 			<div className="input-wrapper">
 				<div>
 					<h3>Amount</h3>

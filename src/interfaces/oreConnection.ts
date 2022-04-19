@@ -7,6 +7,6 @@ export interface connection {
     chainSettings: ChainSettings
     chainEndpoints: EosChainEndpoint[]
     chain: Chain
-    connect(): Promise<void>
+    connectChain(): Promise<void>
     getBalance( accountName: string ): Promise<string>
 }

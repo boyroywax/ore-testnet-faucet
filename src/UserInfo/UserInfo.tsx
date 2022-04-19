@@ -5,7 +5,7 @@ export const UserInfo: React.FC = () => {
 	const user = useUser();
 	if (!user) return null;
 
-	const { accountName, email, name, picture, username } = user;
+	const { email, name, picture, username } = user;
 
 	return (
 		<>
@@ -16,8 +16,6 @@ export const UserInfo: React.FC = () => {
 				style={{ width: 100, height: 100, paddingBottom: 30 }}
 				alt={"user"}
 			/>
-			<br />
-			OreId account: {accountName}
 			<br />
 			name: {name}
 			<br />
