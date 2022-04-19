@@ -1,31 +1,51 @@
 // import { ChainType } from "@open-rights-exchange/chainjs";
-import { toEosEntityName, toEosSymbol } from "@open-rights-exchange/chainjs/dist/chains/eos_2/helpers";
-import { ChainEntityName, ChainSymbolBrand } from "@open-rights-exchange/chainjs/dist/models";
+import { toEosEntityName } from "@open-rights-exchange/chainjs/dist/chains/eos_2/helpers";
+import { ChainEntityName } from "@open-rights-exchange/chainjs/dist/models";
 import { useUser } from "oreid-react";
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { AppContext } from "../AppProvider";
 
 import { OreConnection } from "../helpers/ore";
 
 
+
+
 export const UserBalance: React.FC = () => {
 	const user = useUser();
-	if (!user) return null;
+	const { balance, setBalance } = useContext(AppContext)
+	// const componentIsMounted = useRef(true);
 
-	const accountName: ChainEntityName = toEosEntityName(user.accountName)
-	const chainType: ChainSymbolBrand = toEosSymbol("ORE")
+	let accountName: ChainEntityName = toEosEntityName('None')
+	// if (!user) return null;
 
-	const balanceTotal1 = async () => {
-		const connection = new OreConnection()
-		await connection.connect()
-		const balanceTotal = await connection.chain.fetchBalance( accountName, chainType )
+	if (user) {
+		accountName = toEosEntityName(user.accountName)
 	}
+
+	const fetchData = async () => {
+		try {
+			let connection = new OreConnection()
+			const balanceTotal = await connection.getBalance( accountName )
+			setBalance(balanceTotal)
+		}
+		catch (err) {
+			console.error(err)
+		}
+	}
+
+
+	useEffect(() =>  {
+		fetchData()
+	})
+
 
 	return (
 		<>
 			<h2>User Balance</h2>
 			OreId account: {accountName}
 			<br />
-			Balance: {balanceTotal1}
+			Balance: {balance}
+			<button onClick={() => fetchData()}>Update balance</button>
 			<br />
 			{/* Pending Balance: {pendingBalance} */}
 		</>
