@@ -3,6 +3,7 @@ import { toEosEntityName } from "@open-rights-exchange/chainjs/dist/chains/eos_2
 import { ChainEntityName } from "@open-rights-exchange/chainjs/dist/models";
 import { useUser } from "oreid-react";
 import React, { useState, useEffect } from "react";
+import { getOreBalance } from "../helpers/eos";
 // import { AppContext } from "../AppProvider";
 
 import { OreConnection } from "../helpers/ore";
@@ -13,23 +14,34 @@ export const UserBalance: React.FC = () => {
 	const [ balance, setBalance ] = useState("")
 	// const componentIsMounted = useRef(true);
 
-	let accountName: ChainEntityName = toEosEntityName('None')
+	let accountName: string = toEosEntityName('None')
 	// if (!user) return null;
 
 	if (user) {
-		accountName = toEosEntityName(user.accountName)
+		accountName = user.accountName
 	}
+
+	// const fetchData = async () => {
+	// 	try {
+	// 		let connection = new OreConnection()
+	// 		connection.getBalance( accountName ).then((balanceTotal) => {
+	// 			setBalance(balanceTotal)
+	// 		})
+	// 		// return await makeConnection(accountName)
+	// 	}
+	// 	catch (err) {
+	// 		console.error(err)
+	// 	}
+	// }
 
 	const fetchData = async () => {
 		try {
-			let connection = new OreConnection()
-			connection.getBalance( accountName ).then((balanceTotal) => {
-				setBalance(balanceTotal)
-			})
-			// return await makeConnection(accountName)
+			const userBalance = (await getOreBalance(accountName))
+			console.log(userBalance)
+			setBalance( userBalance[0] )
 		}
-		catch (err) {
-			console.error(err)
+		catch (error) {
+			console.error(error)
 		}
 	}
 

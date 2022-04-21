@@ -13,7 +13,8 @@ export const SelectTxParams: React.FC<Props> = ({ amount, setAmount, toAddress, 
 			<h2>Transfer</h2>
 			<div className="input-wrapper">
 				<div>
-					<h3>Amount</h3>
+					Amount
+					<br />
 					<input 
 						name="amount"
 						onChange={(e) => {
@@ -21,8 +22,10 @@ export const SelectTxParams: React.FC<Props> = ({ amount, setAmount, toAddress, 
 							setAmount(e.target.value);
 						}} id={amount}></input>
 				</div>
+				<br />
 				<div>
-					<h3>Recipient</h3>
+					Recipient
+					<br />
 					<input 
 						name="toAddress"
 						onChange={(e) => {

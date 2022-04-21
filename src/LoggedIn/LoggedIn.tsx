@@ -18,15 +18,6 @@ export const LoggedIn: React.FC = () => {
 			<div style={{ marginTop: 50, marginLeft: 40 }}>
 				<UserInfo />
 				<br />
-				<br />
-				<UserBalance />
-				<br />
-				<br />
-				<SelectTxParams amount={amount} setAmount={setAmount} toAddress={toAddress} setToAddress={setToAddress} />
-				<br />
-				<br />
-				<SignWithOreID amount={amount} toAddress={toAddress}/>
-				<br />
 				<button
 					onClick={() => {
 						onLogout();
@@ -34,6 +25,16 @@ export const LoggedIn: React.FC = () => {
 				>
 					Logout
 				</button>
+				<br />
+				<br />
+				<UserBalance />
+				<br />
+				
+				<br />
+				<SelectTxParams amount={amount} setAmount={setAmount} toAddress={toAddress} setToAddress={setToAddress} />
+				<SignWithOreID amount={amount} toAddress={toAddress}/>
+				<br />
+
 			</div>
 		</div>
 	);

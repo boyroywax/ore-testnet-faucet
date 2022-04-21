@@ -74,7 +74,7 @@ export const SignWithOreID: React.FC<Props> = ({amount, toAddress}) => {
 		<div className="App-button">
 			<LoginButton
 				provider="oreid"
-				text="Send"
+				text="Make Transfer"
 				onClick={() => handleSign()}
 			/>
 		</div>
