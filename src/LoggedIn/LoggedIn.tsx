@@ -4,6 +4,7 @@ import { useActionLogout, useUser } from "oreid-react";
 import { SignWithOreID } from "../SignWithOreID";
 import { UserInfo } from "../UserInfo";
 import { UserBalance } from "../UserBalance";
+import { OreFaucetView } from "../OreFaucet";
 
 export const LoggedIn: React.FC = () => {
 	const [ amount, setAmount ] = useState("amount")
@@ -29,7 +30,7 @@ export const LoggedIn: React.FC = () => {
 				<br />
 				<UserBalance />
 				<br />
-				
+				<OreFaucetView />
 				<br />
 				<SelectTxParams amount={amount} setAmount={setAmount} toAddress={toAddress} setToAddress={setToAddress} />
 				<SignWithOreID amount={amount} toAddress={toAddress}/>

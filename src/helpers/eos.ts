@@ -1,4 +1,5 @@
 import { JsonRpc } from 'eosjs'
+import { GetTableRowsResult } from 'eosjs/dist/eosjs-rpc-interfaces';
 
 export const oreTestNetEndpoint: {url: string} = {
     url: "https://ore-staging.openrights.exchange:443"
@@ -24,4 +25,50 @@ export async function getOreBalance(accountName: string): Promise<string> {
         console.error(err)
     }
     return balance
+}
+
+export async function getTransactionTableRows(accountName: string): Promise<GetTableRowsResult | undefined> {
+    let transactionRows: GetTableRowsResult | undefined = undefined
+    try {
+        const rpc = new JsonRpc(oreTestNetEndpoint.url)
+        const rows = await rpc.get_table_rows({
+            json: true,
+            code: 'eosio.token',
+            scope: accountName,
+            table: 'accounts',
+            reverse: false,
+            show_payer: false  
+        })
+        console.log(rows)
+        transactionRows = rows
+    }
+    catch (err) {
+        console.error(err)
+    }
+
+    return transactionRows
+}
+
+export async function getActionHistory(accountName: string): Promise<any> {
+    try {
+        const rpc = new JsonRpc(oreTestNetEndpoint.url)
+        const actionHistory = await rpc.history_get_actions(accountName)
+        return actionHistory.actions
+
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
+
+export async function getAccount(accountName: string): Promise<any> {
+    try {
+        const rpc = new JsonRpc(oreTestNetEndpoint.url)
+        const actionHistory = await rpc.get_account(accountName)
+        return actionHistory
+
+    }
+    catch (err) {
+        console.error(err)
+    }
 }
