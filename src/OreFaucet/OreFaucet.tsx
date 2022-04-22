@@ -94,8 +94,8 @@ export const OreFaucetView: React.FC = () => {
                 status: "Starting"
             })
 
-            let mongo = new MongoClient()
-            await mongo.createLogEntry(entry)
+            // let mongo = new MongoClient()
+            // await mongo.createLogEntry(entry)
 		}
 		catch (error) {
 			console.error(error)

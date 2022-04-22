@@ -1,10 +1,13 @@
 import React, { useState }from "react";
-import { SelectTxParams } from "../SelectTxParams"
 import { useActionLogout, useUser } from "oreid-react";
+
+import { OreFaucetView } from "../OreFaucet";
+import { SelectTxParams } from "../SelectTxParams"
 import { SignWithOreID } from "../SignWithOreID";
 import { UserInfo } from "../UserInfo";
 import { UserBalance } from "../UserBalance";
-import { OreFaucetView } from "../OreFaucet";
+import { WaxConnect } from "../WaxConnect"
+
 
 export const LoggedIn: React.FC = () => {
 	const [ amount, setAmount ] = useState("amount")
@@ -34,6 +37,10 @@ export const LoggedIn: React.FC = () => {
 				<br />
 				<SelectTxParams amount={amount} setAmount={setAmount} toAddress={toAddress} setToAddress={setToAddress} />
 				<SignWithOreID amount={amount} toAddress={toAddress}/>
+				<br />
+				<br />
+				<WaxConnect />
+				<br />
 				<br />
 
 			</div>
