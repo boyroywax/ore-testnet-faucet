@@ -11,10 +11,11 @@ export const WaxConnect: React.FC = () => {
 
     const isWaxConnected = ():boolean  => {
         let waxConnected = false
-        console.log(waxUser)
+
         if ((waxUser !== "LoggedOut") && (waxUser)) {
             waxConnected = true
         }
+
         return waxConnected
     }
 
@@ -22,7 +23,7 @@ export const WaxConnect: React.FC = () => {
 
     return (
         <>
-        <h3>WAX Cloud Wallet</h3>
+        <h2>WAX Cloud Wallet</h2>
             {isConnected ? <WaxLoggedIn /> : <WaxLoggedOut />}
         </>
     )
