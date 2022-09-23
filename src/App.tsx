@@ -11,6 +11,11 @@ import { FaucetAdmin, OreFaucet } from "./OreFaucet";
 import { AccountInfo, SendTransfer, UserBalance, UserResources } from "./OreIdWallet";
 import { REACT_APP_OREID_APP_ID } from "./constants";
 import { Footer } from "./Footer";
+import { Ual } from "./Ual";
+import { Authenticator, Chain, User, UALError, UAL } from 'universal-authenticator-library';
+// import { UALJs } from "ual-plainjs-renderer"
+import { OreUal } from "authenticator";
+
 
 
 const transitProviders = [
@@ -39,6 +44,8 @@ const LoggedInView: React.FC = () => {
 			return false
 		}
 	}
+	
+
 	if (!user) return null;
 	return (
 		<>
@@ -48,6 +55,8 @@ const LoggedInView: React.FC = () => {
 			<SendTransfer />
 			<AccountInfo />
 			<ExternalWallet />
+			<Ual />
+			{/* <button onClick={() => ual}>Login with UAL</button> */}
 			{ isAdmin() ?
 				<FaucetAdmin /> : () => null }
 		</>
